@@ -62,13 +62,14 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1233, 439);
+            this.listView1.Size = new System.Drawing.Size(1257, 464);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -100,7 +101,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 457);
+            this.label1.Location = new System.Drawing.Point(723, 473);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 1;
@@ -110,7 +111,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 477);
+            this.label2.Location = new System.Drawing.Point(723, 493);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 20);
             this.label2.TabIndex = 2;
@@ -119,7 +120,7 @@
             // cbHideDone
             // 
             this.cbHideDone.AutoSize = true;
-            this.cbHideDone.Location = new System.Drawing.Point(59, 520);
+            this.cbHideDone.Location = new System.Drawing.Point(727, 536);
             this.cbHideDone.Name = "cbHideDone";
             this.cbHideDone.Size = new System.Drawing.Size(101, 17);
             this.cbHideDone.TabIndex = 5;
@@ -132,9 +133,9 @@
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(1124, 457);
+            this.groupBox1.Location = new System.Drawing.Point(1091, 467);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(121, 100);
+            this.groupBox1.Size = new System.Drawing.Size(121, 99);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -174,7 +175,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1034, 521);
+            this.button3.Location = new System.Drawing.Point(991, 537);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 9;
@@ -186,7 +187,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 497);
+            this.label3.Location = new System.Drawing.Point(723, 513);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 20);
             this.label3.TabIndex = 10;
@@ -196,7 +197,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(191, 461);
+            this.label4.Location = new System.Drawing.Point(12, 471);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(535, 90);
             this.label4.TabIndex = 11;
@@ -204,7 +205,15 @@
             // 
             // listView2
             // 
+            this.listView2.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
+            this.listView2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listView2.HideSelection = false;
+            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
+            listViewItem3.StateImageIndex = 0;
+            listViewItem4.StateImageIndex = 0;
+            listViewItem5.StateImageIndex = 0;
+            listViewItem6.StateImageIndex = 0;
             this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
@@ -212,29 +221,31 @@
             listViewItem4,
             listViewItem5,
             listViewItem6});
-            this.listView2.Location = new System.Drawing.Point(733, 461);
+            this.listView2.Location = new System.Drawing.Point(553, 467);
             this.listView2.Name = "listView2";
             this.listView2.Scrollable = false;
-            this.listView2.Size = new System.Drawing.Size(164, 97);
+            this.listView2.ShowGroups = false;
+            this.listView2.Size = new System.Drawing.Size(164, 99);
             this.listView2.TabIndex = 12;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView2_ItemSelectionChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1034, 461);
+            this.button1.Location = new System.Drawing.Point(991, 477);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 54);
             this.button1.TabIndex = 13;
             this.button1.Text = "Random Task";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1257, 566);
+            this.ClientSize = new System.Drawing.Size(1257, 570);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.label4);

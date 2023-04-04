@@ -6,6 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
+// ################
+// # Version 1.1  #
+// # 04 / 04 / 23 #
+// ################
+
 namespace CombatAchieveables
 {
     public partial class Form1 : Form
@@ -41,57 +46,29 @@ namespace CombatAchieveables
                 }
             }
 
+            string[] lists = { EasyList, MediumList, HardList, EliteList, MasterList, GrandmasterList };
+            string[] difficultyLevels = { "Easy", "Medium", "Hard", "Elite", "Master", "Supreme" };
+
+            Dictionary<string, string[]> difficultyMap = new Dictionary<string, string[]>();
+            for (int i = 0; i < difficultyLevels.Length; i++)
+            {
+                difficultyMap[difficultyLevels[i]] = lists[i].Split('\n');
+            }
+
             string text = File.ReadAllText(filepath);
-            string[] split = EasyList.Split('\n');
-            for (int i = 0; i < split.Length; ++i)
-            {
-                string[] temp = split[i].Split('\t');
-                Task task = new Task("Easy", temp[0], temp[1], temp[2], temp[3], text[TaskList.Count] + "");
-                TaskList.Add(task);
-            }
 
-            split = MediumList.Split('\n');
-            for (int i = 0; i < split.Length; ++i)
+            foreach (KeyValuePair<string, string[]> difficulty in difficultyMap)
             {
-                string[] temp = split[i].Split('\t');
-                Task task = new Task("Medium", temp[0], temp[1], temp[2], temp[3], text[TaskList.Count] + "");
-                TaskList.Add(task);
-            }
-
-            split = HardList.Split('\n');
-            for (int i = 0; i < split.Length; ++i)
-            {
-                string[] temp = split[i].Split('\t');
-                Task task = new Task("Hard", temp[0], temp[1], temp[2], temp[3], text[TaskList.Count] + "");
-                TaskList.Add(task);
-            }
-
-            split = EliteList.Split('\n');
-            for (int i = 0; i < split.Length; ++i)
-            {
-                string[] temp = split[i].Split('\t');
-                Task task = new Task("Elite", temp[0], temp[1], temp[2], temp[3], text[TaskList.Count] + "");
-                TaskList.Add(task);
-            }
-
-            split = MasterList.Split('\n');
-            for (int i = 0; i < split.Length; ++i)
-            {
-                string[] temp = split[i].Split('\t');
-                Task task = new Task("Master", temp[0], temp[1], temp[2], temp[3], text[TaskList.Count] + "");
-                TaskList.Add(task);
-            }
-
-            split = GrandmasterList.Split('\n');
-            for (int i = 0; i < split.Length; ++i)
-            {
-                string[] temp = split[i].Split('\t');
-                Task task = new Task("Supreme", temp[0], temp[1], temp[2], temp[3], text[TaskList.Count] + "");
-                TaskList.Add(task);
+                foreach (string line in difficulty.Value)
+                {
+                    string[] temp = line.Split('\t');
+                    Task task = new Task(difficulty.Key, temp[0], temp[1], temp[2], temp[3], text[TaskList.Count] + "");
+                    TaskList.Add(task);
+                }
             }
 
             ImageList iList = new ImageList();
-            iList.ImageSize = new Size(10,5);
+            iList.ImageSize = new Size(10, 5);
             listView2.LargeImageList = iList;
 
             GenerateTable();
@@ -100,86 +77,86 @@ namespace CombatAchieveables
         public void GenerateTable()
         {
             listView1.Items.Clear();
-            for (int i = 0; i < TaskList.Count; ++i)
+
+            var items = TaskList.Select((task, index) =>
             {
-                Task t = TaskList[i];
-                ListViewItem lvi = new ListViewItem(t.GetTaskInfo());
-                lvi.Tag = i;
-                listView1.Items.Add(lvi);
-            }
+                ListViewItem lvi = new ListViewItem(task.GetTaskInfo());
+                lvi.Tag = index;
+                return lvi;
+            }).ToArray();
+
+            listView1.Items.AddRange(items);
 
             UpdateTable();
         }
 
         public void UpdateTable()
         {
-            int[] tasksDone = new int[6];
-            int[] tasksPlanned = new int[6];
-            int[] tasksTotal = new int[6];
-            string[] taskTiers = { "Easy", "Medium", "Hard", "Elite", "Master", "Supreme" };
+            Dictionary<string, (int done, int planned, int total)> taskTiers = new Dictionary<string, (int done, int planned, int total)>()
+            {
+                { "Easy", (0, 0, 0) },
+                { "Medium", (0, 0, 0) },
+                { "Hard", (0, 0, 0) },
+                { "Elite", (0, 0, 0) },
+                { "Master", (0, 0, 0) },
+                { "Supreme", (0, 0, 0) }
+            };
 
             foreach (Task t in TaskList)
             {
                 if (t.GetStatus() == "2")
                 {
-                    tasksDone[Int32.Parse(t.GetPointWorth()) - 1]++;
+                    var (done, planned, total) = taskTiers[t.GetTier()];
+                    taskTiers[t.GetTier()] = (done + 1, planned, total + 1);
                 }
                 else if (t.GetStatus() == "1")
                 {
-                    tasksPlanned[Int32.Parse(t.GetPointWorth()) - 1]++;
+                    var (done, planned, total) = taskTiers[t.GetTier()];
+                    taskTiers[t.GetTier()] = (done, planned + 1, total + 1);
                 }
-                tasksTotal[Int32.Parse(t.GetPointWorth()) - 1]++;
+                else
+                {
+                    var (done, planned, total) = taskTiers[t.GetTier()];
+                    taskTiers[t.GetTier()] = (done, planned, total + 1);
+                }
             }
 
-            int ptsPlanned = TaskList.Where(task => task.GetStatus() == "1").Select(task => Int32.Parse(task.GetPointWorth())).Sum();
-            int ptsDone = TaskList.Where(task => task.GetStatus() == "2").Select(task => Int32.Parse(task.GetPointWorth())).Sum();
-            int ptsNeeded;
-
-            if (ptsDone >= 1465)
-                ptsNeeded = 2005 - ptsDone - ptsPlanned;
-            else if (ptsDone >= 820)
-                ptsNeeded = 1465 - ptsDone - ptsPlanned;
-            else if (ptsDone >= 304)
-                ptsNeeded = 820 - ptsDone - ptsPlanned;
-            else if (ptsDone >= 115)
-                ptsNeeded = 304 - ptsDone - ptsPlanned;
-            else if (ptsDone >= 33)
-                ptsNeeded = 115 - ptsDone - ptsPlanned;
-            else
-                ptsNeeded = 33 - ptsDone - ptsPlanned;
-
-            for (int i = 0; i < listView1.Items.Count; ++i)
+            for (int i = 0; i < listView2.Items.Count; ++i)
             {
-                switch (TaskList[Int32.Parse(listView1.Items[i].Tag.ToString())].GetStatus())
+                var tier = taskTiers[taskTiers.Keys.ElementAt(i)];
+                listView2.Items[i].Text = $"{taskTiers.Keys.ElementAt(i)}\n{tier.done} / {tier.total}";
+                listView2.Items[i].ForeColor = tier.done == tier.total ? Color.Green : (tier.done + tier.planned) == tier.total ? Color.Yellow : Color.Black;
+            }
+
+            int ptsPlanned = TaskList.Where(task => task.GetStatus() == "1").Sum(task => Int32.Parse(task.GetPointWorth()));
+            int ptsDone = TaskList.Where(task => task.GetStatus() == "2").Sum(task => Int32.Parse(task.GetPointWorth()));
+
+
+            int[] ranges = { 33, 115, 304, 820, 1465, 2005 };
+            int ptsNeeded = ranges.Last() - ptsDone - ptsPlanned;
+            int rangeIndex = ranges.TakeWhile(range => range <= ptsDone).Count() - 1;
+            if (rangeIndex >= 0 && rangeIndex < ranges.Length - 1)
+            {
+                ptsNeeded = ranges[rangeIndex + 1] - ptsDone - ptsPlanned;
+            }
+
+
+            foreach (ListViewItem item in listView1.Items)
+            {
+                int index = int.Parse(item.Tag.ToString());
+                string status = TaskList[index].GetStatus();
+                item.ForeColor = status switch
                 {
-                    case "0":
-                        listView1.Items[i].ForeColor = Color.Red;
-                        break;
-                    case "1":
-                        listView1.Items[i].ForeColor = Color.Yellow;
-                        break;
-                    case "2":
-                        listView1.Items[i].ForeColor = Color.Green;
-                        break;
-                }
+                    "0" => Color.Red,
+                    "1" => Color.Yellow,
+                    "2" => Color.Green,
+                    _ => Color.Black
+                };
             }
 
             label1.Text = "Completed Points: " + ptsDone.ToString();
             label2.Text = "Points In Progress: " + ptsPlanned.ToString();
             label3.Text = "Points Needed: " + ptsNeeded.ToString();
-
-            for (int i = 0; i < listView2.Items.Count; ++i)
-            {
-                listView2.Items[i].Text = taskTiers[i] + "\n" + tasksDone[i] + " / " + tasksTotal[i];
-                if (tasksDone[i] == tasksTotal[i])
-                {
-                    listView2.Items[i].ForeColor = Color.Green;
-                }
-                else
-                {
-                    listView2.Items[i].ForeColor = Color.Black;
-                }
-            }
 
             if (cbHideDone.Checked)
             {
@@ -281,6 +258,11 @@ namespace CombatAchieveables
         {
             e.Item.Selected = false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class Task
@@ -306,6 +288,11 @@ namespace CombatAchieveables
         public string GetStatus()
         {
             return status;
+        }
+        
+        public string GetTier()
+        {
+            return tier;
         }
 
         public string GetPointWorth()
