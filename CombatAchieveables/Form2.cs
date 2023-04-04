@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CombatAchieveables
@@ -21,8 +14,10 @@ namespace CombatAchieveables
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (Task t in Form1.TaskList) {
-                if (t.GetPointWorth() == "1") {
+            foreach (Task t in Form1.TaskList)
+            {
+                if (t.GetPointWorth() == "1")
+                {
                     t.SetStatus("2");
                 }
             }
@@ -110,6 +105,19 @@ namespace CombatAchieveables
                     btnMegaDelete.Text = "do not push";
                     btnMegaDelete.Tag = "1";
                     break;
+            }
+
+            tu.UpdateTable();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            foreach (Task t in Form1.TaskList)
+            {
+                if (t.GetStatus() == "1")
+                {
+                    t.SetStatus("0");
+                }
             }
 
             tu.UpdateTable();

@@ -28,6 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,6 +49,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +72,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
@@ -110,7 +119,7 @@
             // cbHideDone
             // 
             this.cbHideDone.AutoSize = true;
-            this.cbHideDone.Location = new System.Drawing.Point(12, 537);
+            this.cbHideDone.Location = new System.Drawing.Point(59, 520);
             this.cbHideDone.Name = "cbHideDone";
             this.cbHideDone.Size = new System.Drawing.Size(101, 17);
             this.cbHideDone.TabIndex = 5;
@@ -187,11 +196,38 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(360, 464);
+            this.label4.Location = new System.Drawing.Point(191, 461);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(535, 90);
             this.label4.TabIndex = 11;
             this.label4.Text = "Presto\'s CA Calc";
+            // 
+            // listView2
+            // 
+            this.listView2.HideSelection = false;
+            this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
+            this.listView2.Location = new System.Drawing.Point(733, 461);
+            this.listView2.Name = "listView2";
+            this.listView2.Scrollable = false;
+            this.listView2.Size = new System.Drawing.Size(164, 97);
+            this.listView2.TabIndex = 12;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView2_ItemSelectionChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1034, 461);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 54);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Random Task";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -199,6 +235,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1257, 566);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.listView2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button3);
@@ -235,6 +273,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.Button button1;
     }
 }
 
