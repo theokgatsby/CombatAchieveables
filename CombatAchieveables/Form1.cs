@@ -148,7 +148,7 @@ namespace CombatAchieveables
                 item.ForeColor = status switch
                 {
                     "0" => Color.Red,
-                    "1" => Color.Yellow,
+                    "1" => Color.Purple,
                     "2" => Color.Green,
                     _ => Color.Black
                 };
