@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("");
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,6 +51,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.listView2 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
+            this.cbHideIncom = new System.Windows.Forms.CheckBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +103,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(723, 473);
+            this.label1.Location = new System.Drawing.Point(595, 504);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 1;
@@ -111,7 +113,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(723, 493);
+            this.label2.Location = new System.Drawing.Point(595, 524);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 20);
             this.label2.TabIndex = 2;
@@ -120,11 +122,11 @@
             // cbHideDone
             // 
             this.cbHideDone.AutoSize = true;
-            this.cbHideDone.Location = new System.Drawing.Point(727, 536);
+            this.cbHideDone.Location = new System.Drawing.Point(599, 567);
             this.cbHideDone.Name = "cbHideDone";
-            this.cbHideDone.Size = new System.Drawing.Size(101, 17);
+            this.cbHideDone.Size = new System.Drawing.Size(95, 17);
             this.cbHideDone.TabIndex = 5;
-            this.cbHideDone.Text = "Hide Completed";
+            this.cbHideDone.Text = "Hide Complete";
             this.cbHideDone.UseVisualStyleBackColor = true;
             this.cbHideDone.CheckedChanged += new System.EventHandler(this.cbHideDone_CheckedChanged);
             // 
@@ -133,9 +135,9 @@
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(1091, 467);
+            this.groupBox1.Location = new System.Drawing.Point(1122, 490);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(121, 99);
+            this.groupBox1.Size = new System.Drawing.Size(121, 100);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -175,7 +177,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(991, 537);
+            this.button3.Location = new System.Drawing.Point(871, 567);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 9;
@@ -187,7 +189,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(723, 513);
+            this.label3.Location = new System.Drawing.Point(595, 544);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 20);
             this.label3.TabIndex = 10;
@@ -197,7 +199,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Comic Sans MS", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 471);
+            this.label4.Location = new System.Drawing.Point(10, 499);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(535, 90);
             this.label4.TabIndex = 11;
@@ -208,44 +210,65 @@
             this.listView2.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
             this.listView2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listView2.HideSelection = false;
-            listViewItem1.StateImageIndex = 0;
-            listViewItem2.StateImageIndex = 0;
-            listViewItem3.StateImageIndex = 0;
-            listViewItem4.StateImageIndex = 0;
-            listViewItem5.StateImageIndex = 0;
-            listViewItem6.StateImageIndex = 0;
+            listViewItem13.StateImageIndex = 0;
+            listViewItem14.StateImageIndex = 0;
+            listViewItem15.StateImageIndex = 0;
+            listViewItem16.StateImageIndex = 0;
+            listViewItem17.StateImageIndex = 0;
+            listViewItem18.StateImageIndex = 0;
             this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
-            this.listView2.Location = new System.Drawing.Point(553, 467);
+            listViewItem13,
+            listViewItem14,
+            listViewItem15,
+            listViewItem16,
+            listViewItem17,
+            listViewItem18});
+            this.listView2.Location = new System.Drawing.Point(952, 495);
             this.listView2.Name = "listView2";
             this.listView2.Scrollable = false;
             this.listView2.ShowGroups = false;
-            this.listView2.Size = new System.Drawing.Size(164, 99);
+            this.listView2.Size = new System.Drawing.Size(164, 95);
             this.listView2.TabIndex = 12;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView2_ItemSelectionChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(991, 477);
+            this.button1.Location = new System.Drawing.Point(871, 495);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 54);
+            this.button1.Size = new System.Drawing.Size(75, 66);
             this.button1.TabIndex = 13;
             this.button1.Text = "Random Task";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cbHideIncom
+            // 
+            this.cbHideIncom.AutoSize = true;
+            this.cbHideIncom.Location = new System.Drawing.Point(700, 567);
+            this.cbHideIncom.Name = "cbHideIncom";
+            this.cbHideIncom.Size = new System.Drawing.Size(103, 17);
+            this.cbHideIncom.TabIndex = 14;
+            this.cbHideIncom.Text = "Hide Incomplete";
+            this.cbHideIncom.UseVisualStyleBackColor = true;
+            this.cbHideIncom.CheckedChanged += new System.EventHandler(this.cbHideIncom_CheckedChanged);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(0, 464);
+            this.progressBar1.Maximum = 485;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(1257, 25);
+            this.progressBar1.TabIndex = 15;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1257, 570);
+            this.ClientSize = new System.Drawing.Size(1257, 597);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.cbHideIncom);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.label4);
@@ -256,6 +279,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -286,6 +311,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox cbHideIncom;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

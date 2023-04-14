@@ -7,8 +7,8 @@ using System.Linq;
 using System.Windows.Forms;
 
 // ################
-// # Version 1.1  #
-// # 04 / 04 / 23 #
+// # Version 1.2  #
+// # 04 / 07 / 23 #
 // ################
 
 namespace CombatAchieveables
@@ -158,17 +158,21 @@ namespace CombatAchieveables
             label2.Text = "Points In Progress: " + ptsPlanned.ToString();
             label3.Text = "Points Needed: " + ptsNeeded.ToString();
 
-            if (cbHideDone.Checked)
+            for (int i = listView1.Items.Count - 1; i >= 0; --i)
             {
-                for (int i = listView1.Items.Count - 1; i >= 0; --i)
+                int tagIndex = Int32.Parse(listView1.Items[i].Tag.ToString());
+                if (TaskList[tagIndex].GetStatus() == "2" && cbHideDone.Checked)
                 {
-                    int tagIndex = Int32.Parse(listView1.Items[i].Tag.ToString());
-                    if (TaskList[tagIndex].GetStatus() == "2")
-                    {
-                        listView1.Items.RemoveAt(i);
-                    }
+                    listView1.Items.RemoveAt(i);
+                }
+                if (TaskList[tagIndex].GetStatus() == "0" && cbHideIncom.Checked)
+                {
+                    listView1.Items.RemoveAt(i);
                 }
             }
+
+            progressBar1.Value = TaskList.Where(task => task.GetStatus() == "2").Count();
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -261,7 +265,18 @@ namespace CombatAchieveables
 
         private void button1_Click(object sender, EventArgs e)
         {
+            button1.Text = "aint work yet";
+        }
 
+        private void cbHideIncom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!cbHideIncom.Checked)
+            {
+                listView1.Items.Clear();
+                GenerateTable();
+            }
+
+            UpdateTable();
         }
     }
 
