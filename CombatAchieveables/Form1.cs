@@ -7,8 +7,8 @@ using System.Linq;
 using System.Windows.Forms;
 
 // ################
-// # Version 1.2  #
-// # 04 / 07 / 23 #
+// # Version 1.3  #
+// # 04 / 26 / 23 #
 // ################
 
 namespace CombatAchieveables
