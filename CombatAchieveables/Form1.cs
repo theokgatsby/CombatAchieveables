@@ -125,7 +125,7 @@ namespace CombatAchieveables
             {
                 var tier = taskTiers[taskTiers.Keys.ElementAt(i)];
                 listView2.Items[i].Text = $"{taskTiers.Keys.ElementAt(i)}\n{tier.done} / {tier.total}";
-                listView2.Items[i].ForeColor = tier.done == tier.total ? Color.Green : (tier.done + tier.planned) == tier.total ? Color.Yellow : Color.Black;
+                listView2.Items[i].ForeColor = tier.done == tier.total ? Color.Green : (tier.done + tier.planned) == tier.total ? Color.Purple : Color.Black;
             }
 
             int ptsPlanned = TaskList.Where(task => task.GetStatus() == "1").Sum(task => Int32.Parse(task.GetPointWorth()));
@@ -212,6 +212,18 @@ namespace CombatAchieveables
             }
 
             UpdateTable();
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewItem item = listView1.GetItemAt(e.X, e.Y);
+                int index = int.Parse(item.Tag.ToString());
+
+                Form3 frm3 = new Form3(TaskList[index].GetTier(), TaskList[index].GetMonster(), TaskList[index].GetName(), TaskList[index].GetDescription());
+                frm3.ShowDialog();
+            }
         }
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -304,10 +316,25 @@ namespace CombatAchieveables
         {
             return status;
         }
-        
+
+        public string GetMonster()
+        {
+            return monster;
+        }
+
         public string GetTier()
         {
             return tier;
+        }
+
+        public string GetName()
+        {
+            return name;
+        }
+
+        public string GetDescription()
+        {
+            return description;
         }
 
         public string GetPointWorth()
